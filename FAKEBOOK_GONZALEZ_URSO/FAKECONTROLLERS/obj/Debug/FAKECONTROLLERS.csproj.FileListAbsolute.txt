@@ -1,0 +1,9 @@
+C:\Users\pgonzalez\Documents\UTN 2014\Programacion IV\FAKEBOOK_GONZALEZ_URSO\FAKECONTROLLERS\obj\Debug\FAKECONTROLLERS.csprojResolveAssemblyReference.cache
+C:\Users\pgonzalez\Documents\UTN 2014\Programacion IV\FAKEBOOK_GONZALEZ_URSO\FAKECONTROLLERS\bin\Debug\FAKECONTROLLERS.dll
+C:\Users\pgonzalez\Documents\UTN 2014\Programacion IV\FAKEBOOK_GONZALEZ_URSO\FAKECONTROLLERS\bin\Debug\FAKECONTROLLERS.pdb
+C:\Users\pgonzalez\Documents\UTN 2014\Programacion IV\FAKEBOOK_GONZALEZ_URSO\FAKECONTROLLERS\bin\Debug\FAKEMODELS.dll
+C:\Users\pgonzalez\Documents\UTN 2014\Programacion IV\FAKEBOOK_GONZALEZ_URSO\FAKECONTROLLERS\bin\Debug\FAKEMODELS.pdb
+C:\Users\pgonzalez\Documents\UTN 2014\Programacion IV\FAKEBOOK_GONZALEZ_URSO\FAKECONTROLLERS\obj\Debug\FAKECONTROLLERS.dll
+C:\Users\pgonzalez\Documents\UTN 2014\Programacion IV\FAKEBOOK_GONZALEZ_URSO\FAKECONTROLLERS\obj\Debug\FAKECONTROLLERS.pdb
+C:\Users\pgonzalez\Documents\UTN 2014\Programacion IV\FAKEBOOK_GONZALEZ_URSO\FAKECONTROLLERS\bin\Debug\FAKEDAO.dll
+C:\Users\pgonzalez\Documents\UTN 2014\Programacion IV\FAKEBOOK_GONZALEZ_URSO\FAKECONTROLLERS\bin\Debug\FAKEDAO.pdb

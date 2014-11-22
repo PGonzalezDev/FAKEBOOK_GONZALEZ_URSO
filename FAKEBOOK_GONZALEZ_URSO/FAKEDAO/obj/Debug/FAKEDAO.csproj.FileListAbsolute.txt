@@ -1,0 +1,7 @@
+C:\Users\pgonzalez\Documents\UTN 2014\Programacion IV\FAKEBOOK_GONZALEZ_URSO\FAKEDAO\bin\Debug\FAKEDAO.dll
+C:\Users\pgonzalez\Documents\UTN 2014\Programacion IV\FAKEBOOK_GONZALEZ_URSO\FAKEDAO\bin\Debug\FAKEDAO.pdb
+C:\Users\pgonzalez\Documents\UTN 2014\Programacion IV\FAKEBOOK_GONZALEZ_URSO\FAKEDAO\obj\Debug\FAKEDAO.dll
+C:\Users\pgonzalez\Documents\UTN 2014\Programacion IV\FAKEBOOK_GONZALEZ_URSO\FAKEDAO\obj\Debug\FAKEDAO.pdb
+C:\Users\pgonzalez\Documents\UTN 2014\Programacion IV\FAKEBOOK_GONZALEZ_URSO\FAKEDAO\bin\Debug\FAKEMODELS.dll
+C:\Users\pgonzalez\Documents\UTN 2014\Programacion IV\FAKEBOOK_GONZALEZ_URSO\FAKEDAO\bin\Debug\FAKEMODELS.pdb
+C:\Users\pgonzalez\Documents\UTN 2014\Programacion IV\FAKEBOOK_GONZALEZ_URSO\FAKEDAO\obj\Debug\FAKEDAO.csprojResolveAssemblyReference.cache

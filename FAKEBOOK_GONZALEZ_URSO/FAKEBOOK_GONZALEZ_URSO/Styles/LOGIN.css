@@ -1,0 +1,27 @@
+﻿body 
+{
+    background-position: center center;    
+    margin: 0px 0px 0px 0px;
+    background-image: url('Images/Fondo.jpg');
+    background-repeat: no-repeat;
+    width: 1920px;
+    height: 874px;
+    padding: 0px 0px 0px 0px;
+}
+
+.loginTable
+{
+    margin-top: 300px;
+    margin-left: 500px;
+    width: 600px;
+    
+}
+.loginLabel
+{
+    text-align: center;
+}
+.loginTextbox
+{
+    width: 100px;
+}
+

@@ -1,0 +1,5 @@
+C:\Users\pgonzalez\Documents\UTN 2014\Programacion IV\FAKEBOOK_GONZALEZ_URSO\FAKEMODELS\bin\Debug\FAKEMODELS.dll
+C:\Users\pgonzalez\Documents\UTN 2014\Programacion IV\FAKEBOOK_GONZALEZ_URSO\FAKEMODELS\bin\Debug\FAKEMODELS.pdb
+C:\Users\pgonzalez\Documents\UTN 2014\Programacion IV\FAKEBOOK_GONZALEZ_URSO\FAKEMODELS\obj\Debug\FAKEMODELS.dll
+C:\Users\pgonzalez\Documents\UTN 2014\Programacion IV\FAKEBOOK_GONZALEZ_URSO\FAKEMODELS\obj\Debug\FAKEMODELS.pdb
+C:\Users\pgonzalez\Documents\UTN 2014\Programacion IV\FAKEBOOK_GONZALEZ_URSO\FAKEMODELS\obj\Debug\FAKEMODELS.csprojResolveAssemblyReference.cache
