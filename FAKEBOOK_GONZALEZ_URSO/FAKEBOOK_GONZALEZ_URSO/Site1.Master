@@ -19,7 +19,7 @@
         <br />
         <br />
     <center>
-    <table>
+    <%--<table>
     <tr>
     <td><asp:ImageButton ID="ImageButton1" runat="server" BackColor="Black" 
             BorderColor="Black" ImageUrl="~/Styles/Images/INGRESAR.jpg" 
@@ -29,7 +29,7 @@
             ImageUrl="~/Styles/Images/REGISTRAR.jpg" onclick="ImageButton2_Click" />
         </td>   
     </tr>
-    </table>
+    </table>--%>
     </center>
         
     

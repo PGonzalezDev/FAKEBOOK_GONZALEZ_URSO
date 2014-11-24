@@ -14,28 +14,45 @@ namespace FAKEDAO
         {
             string cmd = "INSERT INTO [dbo].[User]([Id],[FirstName],[LastName],[Email],[Password]) values (@Id, @Nombre,@Apellido,@Email,@Contraseña)";
             SqlCommand sqlcmd = new SqlCommand(cmd);
-            int id = getLastId();
-            id += 1;
+            int id = 0;
+            
+            try
+            {
+                id = getNewId();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
 
             sqlcmd.Parameters.AddWithValue("@Id", id);
             sqlcmd.Parameters.AddWithValue("@Nombre", regUser.FirstName);
             sqlcmd.Parameters.AddWithValue("@Apellido", regUser.LastName);
             sqlcmd.Parameters.AddWithValue("@Email", regUser.Mail);
             sqlcmd.Parameters.AddWithValue("@Contraseña", EncodeHelper.Encode(regUser.Password));
-            ConnectionHelper.EjecutarSql(sqlcmd);
+            User user = null;
 
-            User user = GetUserById(id);
+            try
+            {
+                ConnectionHelper.ExecuteNonQuery(sqlcmd);
+                user = GetById(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             return user;
         }
 
-        private int getLastId()
+        private int getNewId()
         {
             SqlCommand command = new SqlCommand();
             command.CommandText = "SELECT COUNT(*) FROM [dbo].[User]";
-            int lastUser = (int)ConnectionHelper.EjecutarEscalar(command);
+            int lastUser = (int)ConnectionHelper.ExecuteScalar(command);
 
-            return lastUser;
+            return lastUser + 1;
         }
         
         public string GetPassword(int id)
@@ -45,7 +62,7 @@ namespace FAKEDAO
             cmd.CommandText = "SELECT [Id], [Password] FROM [dbo].[User] WHERE [Id] = @Id";
             cmd.Parameters.AddWithValue("@Id", id);
 
-            SqlDataReader dr = ConnectionHelper.EjecutarReader(cmd);
+            SqlDataReader dr = ConnectionHelper.ExecuteReader(cmd);
 
             while (dr.Read())
             {
@@ -57,56 +74,90 @@ namespace FAKEDAO
                 }
             }
 
-            ConnectionHelper.Desconectar();
+            ConnectionHelper.Close();
 
             return pass;
         }
 
-        public User GetUserById(int id)
+        public User GetById(int id)
         {
             User user = null;
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "SELECT [Id], [Password] FROM [dbo].[User] WHERE [Id] = @Id";
             cmd.Parameters.AddWithValue("@Id", id);
 
-            SqlDataReader dr = ConnectionHelper.EjecutarReader(cmd);
-
-            while (dr.Read())
+            try
             {
-                int sourceId = int.Parse(dr["Id"].ToString());
-                if (sourceId == id)
-                {
-                    user = new User((int)dr["Id"], (string)dr["FirstName"], (string)dr["LastName"].ToString(), (string)dr["Email"]);
-                    break;
-                }
-            }
+                SqlDataReader dr = ConnectionHelper.ExecuteReader(cmd);
 
-            ConnectionHelper.Desconectar();
+                while (dr.Read())
+                {
+                    int sourceId = int.Parse(dr["Id"].ToString());
+                    if (sourceId == id)
+                    {
+                        user = new User((int)dr["Id"], (string)dr["FirstName"], (string)dr["LastName"].ToString(), (string)dr["Email"]);
+                        break;
+                    }
+                }
+
+                ConnectionHelper.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             return user;
         }
 
-        public User GetUserByEmail(string email)
+        public User GetByEmail(string email)
         {
             User user = null;
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM [dbo].[User] WHERE [Email] = @Email";
+            command.CommandText = "SELECT [Id], [FirstName], [LastName], [Email] FROM [dbo].[User] WHERE [Email] = @Email";
             command.Parameters.AddWithValue("@Email", email);
 
-            SqlDataReader dr = ConnectionHelper.EjecutarReader(command);
-
-            while (dr.Read())
+            try
             {
-                if (string.Compare(dr["Email"].ToString(), email) == 0)
+                SqlDataReader dr = ConnectionHelper.ExecuteReader(command);
+
+                while (dr.Read())
                 {
-                    user = new User((int)dr["Id"], (string)dr["FirstName"], (string)dr["LastName"].ToString(), (string)dr["Email"]);
-                    break;
+                    if (string.Compare(dr["Email"].ToString(), email) == 0)
+                    {
+                        user = new User((int)dr["Id"], (string)dr["FirstName"], (string)dr["LastName"].ToString(), (string)dr["Email"]);
+                        break;
+                    }
                 }
+
+                ConnectionHelper.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
 
-            ConnectionHelper.Desconectar();
-
             return user;
+        }
+
+        public bool IsEmailInUse(string email)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT 1 FROM [dbo].[User] WHERE [Email] = @Email";
+            cmd.Parameters.AddWithValue("@Email", email);
+            
+            try
+            {
+                object value = ConnectionHelper.ExecuteScalar(cmd);
+                bool exist = (value != null) ? ((int)value == 1) : false;
+
+                return exist;
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
         }
     }
 }

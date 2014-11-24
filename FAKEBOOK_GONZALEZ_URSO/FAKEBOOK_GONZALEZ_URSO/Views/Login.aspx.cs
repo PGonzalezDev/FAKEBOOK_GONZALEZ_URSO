@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using FAKECONTROLLERS;
+using FAKEMODELS;
+using System.Web.Security;
 
 namespace FAKEBOOK_GONZALEZ_URSO
 {
@@ -21,10 +23,13 @@ namespace FAKEBOOK_GONZALEZ_URSO
                 && !string.IsNullOrEmpty(PassTxt.Text))
             {
                 LoginController controller = new LoginController();
-                bool isLogged = controller.ValidateLogin(LoginTxt.Text, PassTxt.Text);
+                bool isLogged = false;
+                User user = controller.ValidateLogin(LoginTxt.Text, PassTxt.Text, ref isLogged);
 
                 if (isLogged)
                 {
+                    FormsAuthentication.SetAuthCookie(LoginTxt.Text, false);
+                    Session["User"] = user;
                     Response.Redirect("index.aspx");
                 }
                 else

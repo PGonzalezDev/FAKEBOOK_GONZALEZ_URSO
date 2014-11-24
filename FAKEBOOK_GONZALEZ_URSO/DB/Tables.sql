@@ -1,8 +1,6 @@
 USE [FAKEBOOK_DB]
 GO
 
-
-
 /****** Object:  Table [dbo].[User]    Script Date: 11/14/2014 19:24:20 ******/
 SET ANSI_NULLS ON
 GO
@@ -13,6 +11,9 @@ GO
 IF  EXISTS (SELECT name FROM sys.tables WHERE name = N'User')
 	DROP TABLE [dbo].[User];
 GO
+IF  EXISTS (SELECT name FROM sys.tables WHERE name = N'Publication')
+	DROP TABLE [dbo].[Publication];
+GO
 
 CREATE TABLE [dbo].[User](
 	[Id] [int] NOT NULL,
@@ -20,7 +21,21 @@ CREATE TABLE [dbo].[User](
 	[LastName] [nvarchar](20) NULL,
 	[Email] [nvarchar](100) NOT NULL,
 	[Password] [nvarchar](300) NOT NULL,
-	CONSTRAINT [Id] PRIMARY KEY CLUSTERED 
+	CONSTRAINT [UserId] PRIMARY KEY CLUSTERED 
+	(
+		[Id] ASC
+	)
+) ON [PRIMARY]
+
+GO
+
+CREATE TABLE [dbo].[Publication](
+	[Id] [int] NOT NULL,
+	[UserId] [int] NOT NULL,
+	[Txt] [nvarchar](500) NOT NULL,
+	[Img] [nvarchar](MAX) NOT NULL,
+	[Date_Time] [DateTime] NOT NULL,
+	CONSTRAINT [PublicationId] PRIMARY KEY CLUSTERED 
 	(
 		[Id] ASC
 	)

@@ -10,10 +10,32 @@ namespace FAKECONTROLLERS
 {
     public class RegisterUserController
     {
+        UserDAO userDAO = new UserDAO();
+
         public User Add(RegisterUser regUser)
         {
-            UserDAO dao = new UserDAO();
-            return dao.Add(regUser);
+            try
+            {
+                return userDAO.Add(regUser);
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
+        }
+
+        public bool IsMailInUse(string mail)
+        {
+            try
+            {
+                return userDAO.IsEmailInUse(mail);
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
         }
     }
 }

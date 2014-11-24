@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
+using FAKEMODELS;
 
 namespace FAKEBOOK_GONZALEZ_URSO
 {
@@ -30,7 +31,7 @@ namespace FAKEBOOK_GONZALEZ_URSO
 
         void Session_Start(object sender, EventArgs e)
         {
-            // Code that runs when a new session is started
+            Session["User"] = new User();
 
         }
 

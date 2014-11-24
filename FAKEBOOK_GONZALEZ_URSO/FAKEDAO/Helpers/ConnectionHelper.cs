@@ -12,7 +12,7 @@ namespace FAKEDAO.Helpers
         static string ConnectionString = "Persist Security Info=False;Integrated Security=true;Initial Catalog=FAKEBOOK_DB;server=NENE\\SQLEXPRESS";
         static public SqlConnection cn = new SqlConnection(ConnectionString);
         
-        static public void Conectar()
+        static public void Open()
         {
             try
             {
@@ -21,10 +21,10 @@ namespace FAKEDAO.Helpers
             }
             catch
             {
-                throw new Exception("Error Conexión");
+                throw new Exception("Error de Conexión");
             }
         }
-        static public void Desconectar()
+        static public void Close()
         {
             try
             {
@@ -33,26 +33,33 @@ namespace FAKEDAO.Helpers
             }
             catch
             {
-                throw new Exception("Error Desconexión");
+                throw new Exception("Error de Desconexión");
             }
         }
 
-        static public object EjecutarEscalar(SqlCommand cmd)
+        static public object ExecuteScalar(SqlCommand cmd)
         {
-            Conectar();
-            cmd.Connection = cn;
-            object aux = cmd.ExecuteScalar();
-            Desconectar();
-            return aux;
+            try
+            {
+                Open();
+                cmd.Connection = cn;
+                object aux = cmd.ExecuteScalar();
+                Close();
+                return aux;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener Escalar");
+            }
         }
 
-        static public DataTable CargarDatos(SqlCommand cmd)
+        static public DataTable GetData(SqlCommand cmd)
         {
             try
             {
                 DataTable dt = new DataTable();
                 cmd.Connection = cn;
-                Conectar();
+                Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 dt.Load(reader);
                 return dt;
@@ -63,37 +70,36 @@ namespace FAKEDAO.Helpers
             }
         }
 
-        static public SqlDataReader EjecutarReader(SqlCommand cmd)
+        static public SqlDataReader ExecuteReader(SqlCommand cmd)
         {
             try
             {
                 cmd.Connection = cn;
-                Conectar();
-                SqlDataReader reader = null;
-                
-                try
-                {
-                    reader = cmd.ExecuteReader();
-                }
-                catch
-                {
-                    throw new Exception("Error al Cargar los datos");
-                }
+                Open();
+                SqlDataReader reader = cmd.ExecuteReader();
 
                 return reader;
             }
             catch
             {
-                throw new Exception("Error Dato Cargado");
+                Close();
+                throw new Exception("Error al Cargar los datos");
             }
         }
 
-        static public void EjecutarSql(SqlCommand cmd)
+        static public void ExecuteNonQuery(SqlCommand cmd)
         {
-            cmd.Connection = cn;
-            Conectar();
-            cmd.ExecuteNonQuery();
-            Desconectar();
+            try
+            {
+                cmd.Connection = cn;
+                Open();
+                cmd.ExecuteNonQuery();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al Ejecutar la sentencia de AMB");
+            }
         }
     }
 }

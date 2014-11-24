@@ -6,7 +6,7 @@
 <head runat="server">
     <title>Bienvenido a FAKEBOOK ingrese sus datos correctamente para continuar, Gracias por elegir FAKEBOOK!!!!</title>
    
-    <link href="~\Styles\LOGIN.css" rel="stylesheet" type="text/css" />
+    <link href="../Styles/LOGIN.css" rel="stylesheet" type="text/css" />
     </head>
 <body>
     <form id="form1" runat="server">
@@ -38,8 +38,7 @@
                     ImageUrl="~/Styles/Images/INGRESAR.jpg" onclick="ImageButton1_Click" />
             </td>
         </tr>
-        <tr></tr>
-    </table>
+        </table>
     <table border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td>

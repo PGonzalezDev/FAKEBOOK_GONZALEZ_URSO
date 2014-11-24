@@ -1,0 +1,40 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="FAKEBOOK___GONZALEZ___URSO.Site1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="Styles\FAKEBOOK.css" rel="stylesheet" type="text/css" />
+     
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+        <br />
+        <br />
+    <center>
+    <table>
+    <tr>
+    <td><asp:ImageButton ID="ImageButton1" runat="server" BackColor="Black" 
+            BorderColor="Black" ImageUrl="~/Styles/Images/INGRESAR.jpg" 
+            onclick="ImageButton1_Click" /></td>
+    <td>
+        <asp:ImageButton ID="ImageButton2" runat="server" 
+            ImageUrl="~/Styles/Images/REGISTRAR.jpg" onclick="ImageButton2_Click" />
+        </td>   
+    </tr>
+    </table>
+    </center>
+        
+    
+    </div>
+    </form>
+</body>
+</html>
+

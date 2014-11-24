@@ -42,8 +42,8 @@
   <ItemGroup>
     <Compile Include="Helpers\ConnectionHelper.cs" />
     <Compile Include="Helpers\EncodeHelper.cs" />
-    <Compile Include="LoginDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublicationDAO.cs" />
     <Compile Include="UserDAO.cs" />
   </ItemGroup>
   <ItemGroup>

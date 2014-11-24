@@ -11,53 +11,63 @@ namespace FAKECONTROLLERS
 {
     public class LoginController
     {
-        UserDAO Dao = new UserDAO();
+        UserDAO userDAO = new UserDAO();
 
-        public bool ValidateLogin(string userMail, string pass)
+        public User ValidateLogin(string userMail, string pass, ref bool isValid)
         {
-            bool isValid = false;
-
-            User user = getUser(userMail);
-
-            if (user != null)
+            try
             {
-                isValid = validatePassword(user, pass);
-            }
+                isValid = false;
+                User user = getUser(userMail);
 
-            return isValid;
+                if (user != null)
+                {
+                    isValid = validatePassword(user, pass);
+                }
+
+                return user;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private User getUser(string userMail)
         {
-            User user = Dao.GetUserByEmail(userMail);
-
-            return user;
+            try
+            {
+                return userDAO.GetByEmail(userMail);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private bool validatePassword(User user, string pass)
         {
-            bool isValid = false;
-            string sourcePass = getPasswordByUser(user.Id);
-
-            string passEncoded = EncodeHelper.Encode(pass);
-
-            isValid = (string.Compare(sourcePass, passEncoded) == 0);
-
-            return isValid;
+            try
+            {
+                string sourcePass = getPasswordByUser(user.Id);
+                return (string.Compare(sourcePass, EncodeHelper.Encode(pass)) == 0);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private string getPasswordByUser(int userId)
         {
-            string passFromDataBase = string.Empty;
-            
-            passFromDataBase = Dao.GetPassword(userId);
-
-            return passFromDataBase;
+            try
+            {
+                return userDAO.GetPassword(userId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
-        /*
-        private string encodePassword(string pass)
-        {
-            return EncodeHelper.Encode(pass);
-        }*/
     }
 }

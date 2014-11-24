@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Ingrese sus datos para crear su usuario</title>
-    <link href="REGISTRARSE.css" rel="stylesheet" type="text/css" />
+    <link href="../Styles/REGISTRARSE.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <form id="form1" runat="server">

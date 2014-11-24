@@ -13,7 +13,7 @@ namespace FAKEBOOK___GONZALEZ___URSO
         {
 
         }
-
+        /*
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("Login.aspx");
@@ -22,6 +22,6 @@ namespace FAKEBOOK___GONZALEZ___URSO
         protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("Registrarse.aspx");
-        }
+        }*/
     }
 }
