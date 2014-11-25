@@ -1,19 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="FAKEBOOK_GONZALEZ_URSO.index" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        .PostDiv
-        {
-            margin-top: 150px;
-            background-color: GrayText;
-            width: 320px;
-        }
-        
-        .Publicationtxt
-        {
-            height: 100px;
-            width: 300px;
-        }
-    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
@@ -25,4 +11,9 @@
         <asp:Label ID="ErrorLabel" runat="server" ForeColor="Red" Text="" /> <br />
     </div>
 
+    <%--<div id="Publications" runat="server">
+    </div>--%>
+    <br />
+    <asp:GridView ID="GridView1" runat="server">
+    </asp:GridView>
 </asp:Content>

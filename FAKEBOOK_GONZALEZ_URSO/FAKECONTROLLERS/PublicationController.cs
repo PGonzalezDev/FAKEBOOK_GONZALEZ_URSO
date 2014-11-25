@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using FAKEDAO;
 using FAKEMODELS;
+using FAKEMODELS.Wrappers;
 
 namespace FAKECONTROLLERS
 {
@@ -11,11 +12,11 @@ namespace FAKECONTROLLERS
     {
         PublicationDAO publicationDAO = new PublicationDAO();
 
-        public void Post(ref Publication pub)
+        public void Post(ref Publication post)
         {
             try
             {
-                publicationDAO.Post(ref pub);
+                publicationDAO.Post(ref post);
             }
             catch (Exception ex)
             {
@@ -23,6 +24,19 @@ namespace FAKECONTROLLERS
                 throw ex;
             }
             
+        }
+
+        public List<PublicationWrapper> GetAllByUser(User user)
+        {
+            try
+            {
+                return publicationDAO.GetAllByUser(user);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

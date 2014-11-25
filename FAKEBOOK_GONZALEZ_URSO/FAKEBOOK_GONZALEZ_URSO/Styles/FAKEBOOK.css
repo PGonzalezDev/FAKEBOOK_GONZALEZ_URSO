@@ -9,4 +9,16 @@
     padding: 0px 0px 0px 0px;
 }
 
+.PostDiv
+{
+    margin-top: 150px;
+    background-color: #E1E6F0;
+    width: 320px;
+}
+        
+.Publicationtxt
+{
+    height: 100px;
+    width: 300px;
+}
 

@@ -45,6 +45,7 @@
     <Compile Include="Publication.cs" />
     <Compile Include="RegisterUser.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="Wrappers\PublicationWrapper.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

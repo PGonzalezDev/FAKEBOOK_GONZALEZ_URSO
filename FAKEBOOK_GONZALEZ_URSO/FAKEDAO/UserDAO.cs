@@ -12,7 +12,7 @@ namespace FAKEDAO
     {
         public User Add(RegisterUser regUser)
         {
-            string cmd = "INSERT INTO [dbo].[User]([Id],[FirstName],[LastName],[Email],[Password]) values (@Id, @Nombre,@Apellido,@Email,@Contraseña)";
+            string cmd = "INSERT INTO [dbo].[User]([Id],[FirstName],[LastName],[Email],[Password]) values (@Id, @Nombre, @Apellido, @Email, @Pass)";
             SqlCommand sqlcmd = new SqlCommand(cmd);
             int id = 0;
             
@@ -30,7 +30,8 @@ namespace FAKEDAO
             sqlcmd.Parameters.AddWithValue("@Nombre", regUser.FirstName);
             sqlcmd.Parameters.AddWithValue("@Apellido", regUser.LastName);
             sqlcmd.Parameters.AddWithValue("@Email", regUser.Mail);
-            sqlcmd.Parameters.AddWithValue("@Contraseña", EncodeHelper.Encode(regUser.Password));
+            sqlcmd.Parameters.AddWithValue("@Pass", EncodeHelper.Encode(regUser.Password));
+            
             User user = null;
 
             try
@@ -83,7 +84,7 @@ namespace FAKEDAO
         {
             User user = null;
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT [Id], [Password] FROM [dbo].[User] WHERE [Id] = @Id";
+            cmd.CommandText = "SELECT [Id], [FirstName], [LastName], [Email] FROM [dbo].[User] WHERE [Id] = @Id";
             cmd.Parameters.AddWithValue("@Id", id);
 
             try
@@ -95,7 +96,7 @@ namespace FAKEDAO
                     int sourceId = int.Parse(dr["Id"].ToString());
                     if (sourceId == id)
                     {
-                        user = new User((int)dr["Id"], (string)dr["FirstName"], (string)dr["LastName"].ToString(), (string)dr["Email"]);
+                        user = new User((int)dr["Id"], (string)dr["FirstName"], (string)dr["LastName"], (string)dr["Email"]);
                         break;
                     }
                 }

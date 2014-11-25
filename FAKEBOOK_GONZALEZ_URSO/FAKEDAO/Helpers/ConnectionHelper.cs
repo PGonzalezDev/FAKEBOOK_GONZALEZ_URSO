@@ -47,7 +47,7 @@ namespace FAKEDAO.Helpers
                 Close();
                 return aux;
             }
-            catch (Exception ex)
+            catch
             {
                 throw new Exception("Error al obtener Escalar");
             }
@@ -96,7 +96,7 @@ namespace FAKEDAO.Helpers
                 cmd.ExecuteNonQuery();
                 Close();
             }
-            catch (Exception ex)
+            catch
             {
                 throw new Exception("Error al Ejecutar la sentencia de AMB");
             }

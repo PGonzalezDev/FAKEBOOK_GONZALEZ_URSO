@@ -17,28 +17,30 @@ namespace FAKEMODELS
         public Publication()
         {
             Id = 0;
-            User = null;
+            User = new User();
             Text = string.Empty;
             Image = string.Empty;
             Date_Time = DateTime.MinValue;
             CommentList = new List<Comment>();
 
         }
-        /*
-        public Publication(int id, User user, string text, DateTime dateTime)
+
+        public Publication(int userId, string text, DateTime dateTime, int id = 0, string img = "")
         {
+
             Id = id;
-            User = user;
+            User = new User();
+            User.Id = userId;
             Text = text;
             Date_Time = dateTime;
+            Image = img;
             CommentList = new List<Comment>();
-            
-        }*/
+        }
 
-        public Publication(User user, string text, DateTime dateTime, string img = "")
+        public Publication(User user, string text, DateTime dateTime, int id = 0, string img = "")
         {
 
-            Id = 0;
+            Id = id;
             User = user;
             Text = text;
             Date_Time = dateTime;
@@ -48,7 +50,7 @@ namespace FAKEMODELS
 
         public bool IsValid()
         {
-            return ((User != null)
+            return ((User != null && User.Id != 0)
                     && !string.IsNullOrEmpty(Text.Trim())
                     && (Date_Time != null && DateTime.Compare(Date_Time, DateTime.MinValue) != 0));
         }

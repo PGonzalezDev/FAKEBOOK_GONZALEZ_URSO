@@ -31,18 +31,34 @@ namespace FAKEBOOK_GONZALEZ_URSO
                 {
                     RegisterUserController controller = new RegisterUserController();
 
-                    if (!controller.IsMailInUse(regUser.Mail))
+                    try
                     {
-                        User user = controller.Add(regUser);
-
-                        if (user != null)
+                        if (!controller.IsMailInUse(regUser.Mail))
                         {
-                            //devolver mensaje usuario registrado correctamente
+                            User user = controller.Add(regUser);
+
+                            if (user != null)
+                            {
+                                FirstName.Text = string.Empty;
+                                LastName.Text = string.Empty;
+                                Email.Text = string.Empty;
+                                ConfirmMail.Text = string.Empty;
+                                Password.Text = string.Empty;
+                                ConfirmPassword.Text = string.Empty;
+                                MsjLabel.ForeColor = System.Drawing.Color.Green;
+                                MsjLabel.Text = "Usuario Registrado correctamente";
+                            }
+                        }
+                        else
+                        {
+                            MsjLabel.ForeColor = System.Drawing.Color.Red;
+                            MsjLabel.Text = "El mail ya esta en uso";
                         }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        //devolver mensaje que el mail esta en uso
+                        MsjLabel.ForeColor = System.Drawing.Color.Red;
+                        MsjLabel.Text = ex.Message;
                     }
                 }
                 
