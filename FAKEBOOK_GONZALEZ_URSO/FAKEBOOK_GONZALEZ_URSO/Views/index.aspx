@@ -14,6 +14,15 @@
     <%--<div id="Publications" runat="server">
     </div>--%>
     <br />
-    <asp:GridView ID="GridView1" runat="server">
+    <asp:GridView ID="GridView1" runat="server" BackColor="#E1E6F0" BorderColor="Black" BorderWidth="2" AutoGenerateColumns="false" 
+        Width="50%" DataKeyNames="Id" OnRowDeleting="GridView1_RowDeleting">
+        <Columns>
+            <asp:BoundField DataField="UserName" HeaderText="Usuario" />
+            <asp:BoundField DataField="Text" HeaderText="Mensaje" />
+            <asp:BoundField DataField="Image" HeaderText="Imagen" />
+            <asp:BoundField DataField="Date_Time" HeaderText="Fecha y Hora" />
+            <asp:HyperLinkField Text="Comentarios" NavigateUrl="~/Views/index.aspx" />
+            <asp:ButtonField CommandName="Delete" Text="Eliminar" />
+        </Columns>
     </asp:GridView>
 </asp:Content>

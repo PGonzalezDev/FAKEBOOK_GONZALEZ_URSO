@@ -10,14 +10,14 @@ namespace FAKEDAO.Helpers
     public static class ConnectionHelper
     {
         static string ConnectionString = "Persist Security Info=False;Integrated Security=true;Initial Catalog=FAKEBOOK_DB;server=NENE\\SQLEXPRESS";
-        static public SqlConnection cn = new SqlConnection(ConnectionString);
+        static public SqlConnection Conn = new SqlConnection(ConnectionString);
         
         static public void Open()
         {
             try
             {
-                if (cn.State == ConnectionState.Closed)
-                    cn.Open();
+                if (Conn.State == ConnectionState.Closed)
+                    Conn.Open();
             }
             catch
             {
@@ -28,8 +28,8 @@ namespace FAKEDAO.Helpers
         {
             try
             {
-                if (cn.State == ConnectionState.Open)
-                    cn.Close();
+                if (Conn.State == ConnectionState.Open)
+                    Conn.Close();
             }
             catch
             {
@@ -37,12 +37,13 @@ namespace FAKEDAO.Helpers
             }
         }
 
-        static public object ExecuteScalar(SqlCommand cmd)
+        static public object ExecuteScalar(SqlCommand cmd, SqlTransaction trans = null)
         {
             try
             {
+                cmd.Connection = Conn;
+                cmd.Transaction = trans;
                 Open();
-                cmd.Connection = cn;
                 object aux = cmd.ExecuteScalar();
                 Close();
                 return aux;
@@ -53,12 +54,13 @@ namespace FAKEDAO.Helpers
             }
         }
 
-        static public DataTable GetData(SqlCommand cmd)
+        static public DataTable GetData(SqlCommand cmd, SqlTransaction trans = null)
         {
             try
             {
                 DataTable dt = new DataTable();
-                cmd.Connection = cn;
+                cmd.Connection = Conn;
+                cmd.Transaction = trans;
                 Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 dt.Load(reader);
@@ -70,11 +72,12 @@ namespace FAKEDAO.Helpers
             }
         }
 
-        static public SqlDataReader ExecuteReader(SqlCommand cmd)
+        static public SqlDataReader ExecuteReader(SqlCommand cmd, SqlTransaction trans = null)
         {
             try
             {
-                cmd.Connection = cn;
+                cmd.Connection = Conn;
+                cmd.Transaction = trans;
                 Open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -87,11 +90,12 @@ namespace FAKEDAO.Helpers
             }
         }
 
-        static public void ExecuteNonQuery(SqlCommand cmd)
+        static public void ExecuteNonQuery(SqlCommand cmd, SqlTransaction trans = null)
         {
             try
             {
-                cmd.Connection = cn;
+                cmd.Connection = Conn;
+                cmd.Transaction = trans;
                 Open();
                 cmd.ExecuteNonQuery();
                 Close();

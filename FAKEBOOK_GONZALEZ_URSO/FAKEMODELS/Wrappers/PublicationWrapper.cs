@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
 
 namespace FAKEMODELS.Wrappers
 {
     public class PublicationWrapper
     {
+        public int Id { get; set; }
         public string UserName { get; set; }
         public string Text { get; set; }
         public string Image { get; set; }
@@ -14,6 +16,7 @@ namespace FAKEMODELS.Wrappers
 
         public PublicationWrapper(Publication post)
         {
+            Id = post.Id;
             UserName = post.User.UserName;
             Text = breakLines(post.Text);
             Image = post.Image;

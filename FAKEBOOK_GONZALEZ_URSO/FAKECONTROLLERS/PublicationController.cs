@@ -12,18 +12,30 @@ namespace FAKECONTROLLERS
     {
         PublicationDAO publicationDAO = new PublicationDAO();
 
-        public void Post(ref Publication post)
+        public void Add(ref Publication post)
         {
             try
             {
-                publicationDAO.Post(ref post);
+                publicationDAO.Add(ref post);
             }
             catch (Exception ex)
             {
                 
                 throw ex;
             }
-            
+        }
+
+        public void Remove(int postId)
+        {
+            try
+            {
+                publicationDAO.Remove(postId);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public List<PublicationWrapper> GetAllByUser(User user)

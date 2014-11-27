@@ -11,52 +11,48 @@ namespace FAKEDAO
 {
     public class PublicationDAO
     {
-        public void Post(ref Publication post)
+        public void Add(ref Publication post)
         {
-            string cmd = "INSERT INTO [dbo].[Publication]([Id],[UserId],[Txt],[Img],[Date_Time]) VALUES(@Id,@UserId,@Txt,@Img,@DateTime)";
-            SqlCommand sqlcmd = new SqlCommand(cmd);
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "INSERT INTO [dbo].[Publication]([UserId],[Txt],[Img],[Date_Time]) VALUES(@UserId,@Txt,@Img,@DateTime);";
             int id = 0;
-            
-            try
-            {
-                id = getNewId();
-            }
-            catch (Exception ex)
-            {
-                
-                throw ex;
-            }
 
-            sqlcmd.Parameters.AddWithValue("@Id", id);
-            sqlcmd.Parameters.AddWithValue("@UserId", post.User.Id);
-            sqlcmd.Parameters.AddWithValue("@Txt", post.Text);
-            sqlcmd.Parameters.AddWithValue("@Img", post.Image);
-            sqlcmd.Parameters.AddWithValue("@DateTime", post.Date_Time);
-            
+            cmd.Parameters.AddWithValue("@UserId", post.User.Id);
+            cmd.Parameters.AddWithValue("@Txt", post.Text);
+            cmd.Parameters.AddWithValue("@Img", post.Image);
+            cmd.Parameters.AddWithValue("@DateTime", post.Date_Time);
+
+            cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+
             try
             {
-                ConnectionHelper.ExecuteNonQuery(sqlcmd);
+                id = Convert.ToInt32((decimal)ConnectionHelper.ExecuteScalar(cmd));
+                
                 post.Id = id;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+            finally
+            {
+                ConnectionHelper.Close();
+            }
         }
 
-        private int getNewId()
+        public void Remove(int postId)
         {
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT COUNT(*) FROM [dbo].[Publication]";
-            
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "DELETE FROM [dbo].[Publication] WHERE [Id] = @Id";
+            cmd.Parameters.AddWithValue("@Id", postId);
+
             try
             {
-                int lastPublication = (int)ConnectionHelper.ExecuteScalar(command);
-                return lastPublication + 1;
+                ConnectionHelper.ExecuteNonQuery(cmd);
             }
             catch (Exception ex)
             {
-                
+
                 throw ex;
             }
         }

@@ -48,6 +48,11 @@ namespace FAKEMODELS
             CommentList = new List<Comment>();
         }
 
+        public override string ToString()
+        {
+            return (User != null) ? User.UserName : string.Empty;
+        }
+
         public bool IsValid()
         {
             return ((User != null && User.Id != 0)
